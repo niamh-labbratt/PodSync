@@ -28,6 +28,6 @@ And now, simply run the python script in a terminal, with the first argument bei
 
 Example:
 
-`podsync.py /path/to/sync/dir/ /path/to/rockbox/`
+`python podsync.py /path/to/sync/dir/ /path/to/rockbox/`
 
 ---
