@@ -1,7 +1,22 @@
 # o-----------------------o
 # |   PodSync by Niamh    |
-# |      v1 10/9/26       |
+# |        10/9/26        |
 # o-----------------------o
+
+# Copyright (C) 2026 Niamh-LabbRatt
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 # Libraries
 import os
@@ -26,15 +41,15 @@ def clearTerm():
 def checkDir():
     # Checking if the sync folder exists
     if not Path(syncfs).is_dir():
-        print("Error:", syncfs, "is not a directory.")
+        print("Error:", syncfs, "is not a directory or does not exist.")
         sys.exit(1)
     # Checking if the ipod folder exists
     if not Path(ipodfs).is_dir():
-        print("Error:", ipodfs, "is not a directory.")
+        print("Error:", ipodfs, "is not a directory or does not exist.")
         sys.exit(1)
     # Checking if the sync folder is readable/writable
     if not os.access(syncfs, os.R_OK | os.W_OK):
-        print("Error:", syncfs, "is not readable.")
+        print("Error:", syncfs, "is not readable and/or writable.")
         sys.exit(1)
     # Checking if the ipod folder is readable/writable
     if not os.access(syncfs, os.R_OK | os.W_OK):
@@ -47,14 +62,21 @@ def copyLog(src, dst):
     return shutil.copy2(src, dst)
 
 # Initialization
-checkDir()
 clearTerm()
-print("PodSync by Niamh v1\n")
+
+print("PodSync\nCopyright (C) 2026 Niamh\n")
+
+print("This program comes with ABSOLUTELY NO WARRANTY.")
+print("This is free software, and you are welcome to redistribute it")
+print("under certain conditions. Refer to "+"LICENSE.txt"+" for details.\n")
+
+checkDir()
 
 print("Local Folder: " + syncfs)
 print("Device Folder: " + ipodfs + "\n")
 
 start = input("Are you sure you would like to sync these folders? Every synced file on your rockbox device will be deleted and replaced.\n(Y/N): ")
+
 if start == "y":
     try:
         with contextlib.suppress(FileNotFoundError):
